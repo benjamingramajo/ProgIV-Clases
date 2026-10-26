@@ -4,10 +4,12 @@ import productosRouter from "./productos.js";
 import categoriasRouter from "./categorias.js";
 import usuariosRouter from "./usuarios.js";
 import authRouter, { authConfig } from "./auth.js";
+import cors from "cors";
 
 conectarDB();
 
 const app = express();
+app.use(cors());
 const port = 3000;
 
 // Para interpretar body como JSON
