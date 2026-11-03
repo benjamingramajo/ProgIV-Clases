@@ -19,7 +19,7 @@ router.get(
       */
 
     const [usuarios] = await db.execute(
-      "SELECT id, username, nombres, apellidos, es_admin FROM usuarios",
+      "SELECT id, username, nombres, apellidos, esAdmin FROM usuarios",
     );
 
     res.json(usuarios);
@@ -29,7 +29,7 @@ router.get(
 router.get("/:id", validarId, verificarValidaciones, async (req, res) => {
   const id = Number(req.params.id);
   const [usuarios] = await db.execute(
-    "SELECT id, username, nombres, apellidos, es_admin FROM usuarios WHERE id=?",
+    "SELECT id, username, nombres, apellidos, esAdmin FROM usuarios WHERE id=?",
     [id],
   );
 
@@ -63,7 +63,7 @@ router.post(
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const [result] = await db.execute(
-      "INSERT INTO usuarios (username, apellidos, nombres, password, es_admin) VALUES (?,?,?,?,?)",
+      "INSERT INTO usuarios (username, apellidos, nombres, password, esAdmin) VALUES (?,?,?,?,?)",
       [username, apellidos, nombres, hashedPassword, esAdmin],
     );
 
